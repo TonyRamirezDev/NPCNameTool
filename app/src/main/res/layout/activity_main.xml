@@ -15,13 +15,15 @@
         android:paddingTop="20dp" />
 
     <TextView
+        android:id="@+id/nameValue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/nameHint"
         android:layout_toRightOf="@id/nameText"
+        android:layout_toEndOf="@id/nameText"
         android:paddingTop="20dp"
-        android:paddingLeft="15dp"
-        android:paddingStart="15dp"/>
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp" />
 
     <TextView
         android:id="@+id/locationText"
@@ -54,7 +56,15 @@
         android:layout_height="wrap_content"
         android:inputType="text"
         android:layout_below="@id/locationText"
-        android:layout_toRightOf="@id/descriptionText" />
+        android:layout_toRightOf="@id/descriptionText"
+        android:layout_toEndOf="@id/descriptionText"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/descriptionText"
+        android:layout_marginTop="25dp"
+        android:text="@string/randomizeButtonText"/>
 
 
 
