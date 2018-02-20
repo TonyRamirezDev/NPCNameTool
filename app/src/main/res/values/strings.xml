@@ -3,4 +3,5 @@
     <string name="nameText">Name:</string>
     <string name="locationText">Location:</string>
     <string name="descriptionText">Description:</string>
+    <string name="nameHint">Hit Randomize</string>
 </resources>
