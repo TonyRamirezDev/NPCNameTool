@@ -60,6 +60,7 @@
         android:layout_toEndOf="@id/descriptionText"/>
 
     <Button
+        android:id="@+id/randomizeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/descriptionText"
