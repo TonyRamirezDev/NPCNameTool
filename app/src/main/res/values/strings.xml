@@ -5,4 +5,5 @@
     <string name="descriptionText">Description:</string>
     <string name="nameHint">Hit Randomize</string>
     <string name="randomizeButtonText">Randomize</string>
+    <string name="saveButtonText">Save</string>
 </resources>
