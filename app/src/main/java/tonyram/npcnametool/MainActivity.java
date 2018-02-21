@@ -34,26 +34,44 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 InputStreamReader firstNameStream = new InputStreamReader(getResources().openRawResource(R.raw.firstnames));
-                BufferedReader br = new BufferedReader(firstNameStream);
+                InputStreamReader lastNameStream = new InputStreamReader(getResources().openRawResource(R.raw.lastnames));
+                BufferedReader brFirstName = new BufferedReader(firstNameStream);
+                BufferedReader brLastName = new BufferedReader(lastNameStream);
                 int numLinesFirstName = 100;
+                int numLinesLastName = 70;
                 Random randomFirstName = new Random();
-                int desiredLine = randomFirstName.nextInt(numLinesFirstName);
+                Random randomLastName = new Random();
+                int desiredLineFirstName = randomFirstName.nextInt(numLinesFirstName);
+                int desiredLineLastName = randomLastName.nextInt(numLinesLastName);
 
-                String newName = "";
-                int lineCounter = 0;
+                String newFirstName = "";
+                String newLastName = "";
+                int lineCounterFirstName = 0;
+                int lineCounterLastName = 0;
+
+                StringBuilder fullName = new StringBuilder();
 
                 try {
-                    while ((newName = br.readLine()) != null){
-                        if (lineCounter == desiredLine){
+                    while ((newFirstName = brFirstName.readLine()) != null){
+                        if (lineCounterFirstName == desiredLineFirstName){
                             break;
                         }
-                        lineCounter++;
+                        lineCounterFirstName++;
+                    }
+                    while ((newLastName = brLastName.readLine()) != null){
+                        if (lineCounterLastName == desiredLineLastName) {
+                            break;
+                        }
+                        lineCounterLastName++;
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                Log.d(TAG, "The new name is: " + newName);
-                newNameText.setText(newName);
+                //newNameText.setText(newFirstName + " " + newLastName);
+                fullName.append(newFirstName);
+                fullName.append(" ");
+                fullName.append(newLastName);
+                newNameText.setText(fullName);
             }
         });
 
