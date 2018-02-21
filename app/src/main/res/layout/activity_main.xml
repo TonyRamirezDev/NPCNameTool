@@ -31,8 +31,7 @@
         android:layout_height="wrap_content"
         android:text="@string/locationText"
         android:layout_below="@id/nameText"
-        android:paddingTop="20dp"
-        />
+        android:paddingTop="20dp" />
 
     <EditText
         android:id="@+id/locationInput"
@@ -52,6 +51,7 @@
         android:paddingTop="20dp"/>
 
     <EditText
+        android:id="@+id/descriptionInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
@@ -74,8 +74,11 @@
         android:layout_below="@id/descriptionText"
         android:layout_marginTop="25dp"
         android:layout_toRightOf="@id/randomizeButton"
+        android:layout_toEndOf="@id/randomizeButton"
         android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginLeft="125dp"
+        android:layout_marginStart="125dp"
         android:text="@string/saveButtonText"/>
 
 
