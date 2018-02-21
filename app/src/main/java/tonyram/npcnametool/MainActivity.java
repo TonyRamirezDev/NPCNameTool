@@ -40,14 +40,14 @@ public class MainActivity extends Activity {
                 int desiredLine = randomFirstName.nextInt(numLinesFirstName);
 
                 String newName = "";
-                int lineCtr = 0;
+                int lineCounter = 0;
 
                 try {
                     while ((newName = br.readLine()) != null){
-                        if (lineCtr == desiredLine){
+                        if (lineCounter == desiredLine){
                             break;
                         }
-                        lineCtr++;
+                        lineCounter++;
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
