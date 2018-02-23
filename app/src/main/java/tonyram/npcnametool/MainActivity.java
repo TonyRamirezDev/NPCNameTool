@@ -3,7 +3,11 @@ package tonyram.npcnametool;
 import android.app.Activity;
 import android.nfc.Tag;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,8 +25,13 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Logger;
 
-public class MainActivity extends Activity {
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
+
+public class MainActivity extends AppCompatActivity {
 
 
     InputStreamReader firstNameStream;
@@ -40,19 +49,32 @@ public class MainActivity extends Activity {
     int lineCounterFirstName;
     int lineCounterLastName;
     StringBuilder fullName;
+    DrawerLayout mDrawerLayout;
+    ActionBarDrawerToggle mToggle;
+
 
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.navigation_bar);
         init();
     }
 
-    public static final String TAG = "MyActivity";
+    public static final String TAG = "MainActivity";
 
 
     private void init() {
+        //Navigation Drawer
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayoutMain);
+        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
+        mDrawerLayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
+        //Randomize Name
         final TextView newNameText = (TextView)findViewById(R.id.nameValue);
         Button randomizeButton = (Button)findViewById(R.id.randomizeButton);
         randomizeButton.setOnClickListener(new View.OnClickListener() {
@@ -73,8 +95,6 @@ public class MainActivity extends Activity {
                 lineCounterFirstName = 0;
                 lineCounterLastName = 0;
                 fullName = new StringBuilder();
-
-
                 try {
                     while ((newFirstName = brFirstName.readLine()) != null){
                         if (lineCounterFirstName == desiredLineFirstName){
@@ -98,14 +118,14 @@ public class MainActivity extends Activity {
             }
         });
 
-
+        //Add Saved name to List
         ListView savedList = (ListView)findViewById(R.id.listSaved);
         Button saveButton = (Button)findViewById(R.id.saveButton);
         final EditText descriptionText = (EditText)findViewById(R.id.descriptionInput);
         final EditText locationText = (EditText)findViewById(R.id.locationInput);
         final ArrayList<String> listItems = new ArrayList<String>();
         final ArrayAdapter<String> stringAdapter = new ArrayAdapter<String>(this, R.layout.saved_list, listItems);
-//        savedList.setAdapter(stringAdapter);
+        //savedList.setAdapter(stringAdapter);
 
         saveButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
@@ -126,6 +146,16 @@ public class MainActivity extends Activity {
 //        });
 
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        if (mToggle.onOptionsItemSelected(item)){
+            return true;
+        }
+
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

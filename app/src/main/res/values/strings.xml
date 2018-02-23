@@ -6,4 +6,6 @@
     <string name="nameHint">Hit Randomize</string>
     <string name="randomizeButtonText">Randomize</string>
     <string name="saveButtonText">Save</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 </resources>
